@@ -122,6 +122,8 @@ public class MapGenerator : MonoBehaviour
             new Vector3(2f, grassBottomPrefab.transform.position.y, 0),
             startGrassTile, bottomNearSidewalkHolder, ref bottomNearGrassTiles,
             ref lastOrderOfBottomNearGrass, new Vector3(1.2f, 0, 0));
+
+        InitializeBottomFarLand();
     }
 
     private void InitializePlatform(GameObject prefab, ref Vector3 lastPos, Vector3 lastPosOfTile,
@@ -266,5 +268,28 @@ public class MapGenerator : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private void InitializeBottomFarLand()
+    {
+        InitializePlatform(landPrefab1, ref lastPosOfBottomFarLandF1, landPrefab1.transform.position,
+            startLandTile, bottomFarSidewalkHolder, ref bottomFarLandF1Tiles,
+            ref lastOrderOfBottomFarLandF1, new Vector3(1.6f, 0, 0));
+
+        InitializePlatform(landPrefab2, ref lastPosOfBottomFarLandF2, landPrefab2.transform.position,
+            startLandTile - 3, bottomFarSidewalkHolder, ref bottomFarLandF2Tiles,
+            ref lastOrderOfBottomFarLandF2, new Vector3(1.6f, 0, 0));
+
+        InitializePlatform(landPrefab3, ref lastPosOfBottomFarLandF3, landPrefab3.transform.position,
+            startLandTile - 4, bottomFarSidewalkHolder, ref bottomFarLandF3Tiles,
+            ref lastOrderOfBottomFarLandF3, new Vector3(1.6f, 0, 0));
+
+        InitializePlatform(landPrefab4, ref lastPosOfBottomFarLandF4, landPrefab4.transform.position,
+            startLandTile - 7, bottomFarSidewalkHolder, ref bottomFarLandF4Tiles,
+            ref lastOrderOfBottomFarLandF4, new Vector3(1.6f, 0, 0));
+
+        InitializePlatform(landPrefab5, ref lastPosOfBottomFarLandF5, landPrefab5.transform.position,
+            startLandTile - 10, bottomFarSidewalkHolder, ref bottomFarLandF5Tiles,
+            ref lastOrderOfBottomFarLandF5, new Vector3(1.6f, 0, 0));
     }
 }
