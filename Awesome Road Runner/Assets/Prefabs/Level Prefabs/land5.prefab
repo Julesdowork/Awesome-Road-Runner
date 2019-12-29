@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1020280342540042239}
   - component: {fileID: 1020280342540042236}
+  - component: {fileID: -7862895557669300303}
   m_Layer: 0
   m_Name: Land5
   m_TagString: BottomFarLand5
@@ -24,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020280342540042237}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
   m_LocalPosition: {x: 6.5, y: -13.12, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!212 &1020280342540042236
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80,3 +81,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7862895557669300303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020280342540042237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd0e092eee44404db3d8dda78f3d188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
