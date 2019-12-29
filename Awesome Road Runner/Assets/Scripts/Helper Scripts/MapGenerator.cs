@@ -103,7 +103,52 @@ public class MapGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        InitializePlatform(roadPrefab, ref lastPosOfRoad, roadPrefab.transform.position,
+            startRoadTile, roadHolder, ref roadTiles, ref lastOrderOfRoad,
+            new Vector3(1.5f, 0, 0));
+    }
+
+    private void InitializePlatform(GameObject prefab, ref Vector3 lastPos, Vector3 lastPosOfTile,
+        int amountTile, GameObject holder, ref List<GameObject> listTile, ref int lastOrder, Vector3 offset)
+    {
+        int orderInLayer = 0;
+        lastPos = lastPosOfTile;
+
+        for (int i = 0; i < amountTile; i++)
+        {
+            GameObject clone = Instantiate(prefab, lastPos, prefab.transform.rotation);
+            clone.GetComponent<SpriteRenderer>().sortingOrder = orderInLayer;
+
+            if (clone.tag == MyTags.TOP_NEAR_GRASS)
+            {
+
+            }
+            else if (clone.tag == MyTags.BOTTOM_NEAR_GRASS)
+            {
+
+            }
+            else if (clone.tag == MyTags.BOTTOM_FAR_LAND_2)
+            {
+
+            }
+            else if (clone.tag == MyTags.TOP_FAR_GRASS)
+            {
+
+            }
+
+            clone.transform.SetParent(holder.transform);
+            listTile.Add(clone);
+
+            orderInLayer += 1;
+            lastOrder = orderInLayer;
+
+            lastPos += offset;
+        }
     }
 
 }
