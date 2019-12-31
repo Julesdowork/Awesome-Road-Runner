@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             playerRenderer.sprite = tRexSprite;
             target.gameObject.SetActive(false);
 
-            // CALL SOUND MANAGER TO PLAY THE MUSIC
+            SoundManager.instance.PlayPowerUpSound();
 
             StartCoroutine(TRexDuration());
         }
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
             }
 
             target.gameObject.SetActive(false);
-            // CALL SOUND MANAGER TO PLAY THE MUSIC
+            SoundManager.instance.PlayCoinSound();
             // GAMEPLAY CONTROLLER INCREASE STAR SCORE
         }
     }
@@ -91,14 +91,14 @@ public class PlayerController : MonoBehaviour
                 anim.Play(changeLaneAnimation);
                 transform.localPosition = secondPosOfPlayer;
 
-                // PLAY THE SOUND
+                SoundManager.instance.PlayMoveLaneSound();
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 anim.Play(changeLaneAnimation);
                 transform.localPosition = firstPosOfPlayer;
 
-                // PLAY THE SOUND
+                SoundManager.instance.PlayMoveLaneSound();
             }
         }
     }
@@ -111,6 +111,7 @@ public class PlayerController : MonoBehaviour
             {
                 anim.Play(jumpAnimation);
                 playerJumped = true;
+                SoundManager.instance.PlayJumpSound();
             }
         }
     }
@@ -124,8 +125,8 @@ public class PlayerController : MonoBehaviour
         GameplayController.instance.moveSpeed = 0;
         //GameplayController.instance.GameOver();
 
-        // CALL SOUND MANAGER TO PLAY PLAYER DEAD SOUND
-        // CALL SOUND MANAGER TO PLAY GAME OVER
+        SoundManager.instance.PlayDeadSound();
+        SoundManager.instance.PlayGameOverSound();
     }
 
     private void DieWithObstacle(Collider2D target)
@@ -136,7 +137,8 @@ public class PlayerController : MonoBehaviour
         explosion.SetActive(true);
         target.gameObject.SetActive(false);
 
-        // CALL SOUND MANAGER TO PLAY PLAYER DEAD SOUND
+
+        SoundManager.instance.PlayDeadSound();
     }
 
     private IEnumerator TRexDuration()
@@ -159,6 +161,7 @@ public class PlayerController : MonoBehaviour
 
         target.gameObject.SetActive(false);
 
-        // CALL SOUND MANAGER TO PLAY PLAYER DEAD SOUND
+
+        SoundManager.instance.PlayDeadSound();
     }
 }
