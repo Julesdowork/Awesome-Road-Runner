@@ -16,7 +16,7 @@ public class ObstacleHolder : MonoBehaviour
 
         if (transform.localPosition.x <= limitAxisX)
         {
-            // INFORM THE GAMEPLAY CONTROLLER THAT THE OBSTACLE IS NOT ACTIVE
+            GameplayController.instance.obstaclesAreActive = false;
             gameObject.SetActive(false);
         }
     }

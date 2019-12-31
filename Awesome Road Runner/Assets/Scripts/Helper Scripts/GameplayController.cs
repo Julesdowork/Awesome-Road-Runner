@@ -1,13 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GameplayController : MonoBehaviour
 {
     public static GameplayController instance;
 
     public float moveSpeed, distanceFactor = 1f;
+    [HideInInspector] public bool obstaclesAreActive;
+
+    public GameObject obstaclesObj;
+    public GameObject[] obstacleList;
 
     private float distanceMoved;
     private bool gameJustStarted;
+    private string coroutineName = "SpawnObstacles";
 
     void Awake()
     {
@@ -21,6 +27,9 @@ public class GameplayController : MonoBehaviour
     void Start()
     {
         gameJustStarted = true;
+
+        GetObstacles();
+        StartCoroutine(coroutineName);
     }
 
     // Update is called once per frame
@@ -68,6 +77,43 @@ public class GameplayController : MonoBehaviour
         else if (round >= 60f)
         {
             moveSpeed = 16f;
+        }
+    }
+
+    private void GetObstacles()
+    {
+        obstacleList = new GameObject[obstaclesObj.transform.childCount];
+
+        for (int i = 0; i < obstacleList.Length; i++)
+        {
+            obstacleList[i] =
+                obstaclesObj.GetComponentsInChildren<ObstacleHolder>(true)[i].gameObject;
+        }
+    }
+
+    private IEnumerator SpawnObstacles()
+    {
+        while (true)
+        {
+            if (!PlayerController.instance.playerDied)
+            {
+                if (!obstaclesAreActive)
+                {
+                    if (Random.value <= 0.85f)
+                    {
+                        int randomIndex = 0;
+
+                        do
+                        {
+                            randomIndex = Random.Range(0, obstacleList.Length);
+                        } while (obstacleList[randomIndex].activeInHierarchy);
+
+                        obstacleList[randomIndex].SetActive(true);
+                        obstaclesAreActive = true;
+                    }
+                }
+            }
+            yield return new WaitForSeconds(0.6f);
         }
     }
 }
