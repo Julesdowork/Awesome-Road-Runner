@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class MyTags : MonoBehaviour
+﻿public class MyTags
 {
     // Tags
     public static string ROAD = "Road";
