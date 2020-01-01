@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
         starEffect = GameObject.FindGameObjectsWithTag(MyTags.STAR_EFFECT);
     }
 
+    void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -123,7 +128,7 @@ public class PlayerController : MonoBehaviour
         shadow.SetActive(false);
 
         GameplayController.instance.moveSpeed = 0;
-        //GameplayController.instance.GameOver();
+        GameplayController.instance.GameOver();
 
         SoundManager.instance.PlayDeadSound();
         SoundManager.instance.PlayGameOverSound();
@@ -161,7 +166,8 @@ public class PlayerController : MonoBehaviour
 
         target.gameObject.SetActive(false);
 
-
         SoundManager.instance.PlayDeadSound();
+
+        GameplayController.instance.UpdateStarScore();
     }
 }

@@ -27,4 +27,10 @@ public class AnimationEvents : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void PauseMenuClose()
+    {
+        Time.timeScale = 1f;
+        gameObject.SetActive(false);
+    }
 }
