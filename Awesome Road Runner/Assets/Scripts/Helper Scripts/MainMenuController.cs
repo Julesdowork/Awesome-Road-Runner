@@ -19,10 +19,25 @@ public class MainMenuController : MonoBehaviour
     public void HeroMenu()
     {
         heroMenu.SetActive(true);
+        starScoreText.text = "" + GameManager.instance.starScore;
     }
 
     public void HomeButton()
     {
         heroMenu.SetActive(false);
+    }
+
+    public void MusicButton()
+    {
+        if (GameManager.instance.playSound)
+        {
+            musicImg.sprite = musicOff;
+            GameManager.instance.playSound = false;
+        }
+        else
+        {
+            musicImg.sprite = musicOn;
+            GameManager.instance.playSound = true;
+        }
     }
 }

@@ -23,7 +23,7 @@ public class CharacterSelect : MonoBehaviour
 
     private void InitializeCharacters()
     {
-        currentIndex = 0;
+        currentIndex = GameManager.instance.selectedIndex;
 
         for (int i = 0; i < availableHeroes.Length; i++)
         {
@@ -31,7 +31,7 @@ public class CharacterSelect : MonoBehaviour
         }
         availableHeroes[currentIndex].SetActive(true);
 
-        //heroes = GameManager
+        heroes = GameManager.instance.heroes;
     }
 
     public void NextHero()
@@ -44,6 +44,8 @@ public class CharacterSelect : MonoBehaviour
             currentIndex++;
 
         availableHeroes[currentIndex].SetActive(true);
+
+        CheckIfCharacterIsUnlocked();
     }
 
     public void PreviousHero()
@@ -56,5 +58,73 @@ public class CharacterSelect : MonoBehaviour
             currentIndex--;
 
         availableHeroes[currentIndex].SetActive(true);
+
+        CheckIfCharacterIsUnlocked();
+    }
+
+    private void CheckIfCharacterIsUnlocked()
+    {
+        if (heroes[currentIndex])
+        {
+            // if the hero is unlocked
+            starIcon.SetActive(false);
+
+            if (currentIndex == GameManager.instance.selectedIndex)
+            {
+                selectBtnImage.sprite = buttonGreen;
+                selectedText.text = "Selected";
+            }
+            else
+            {
+                selectBtnImage.sprite = buttonBlue;
+                selectedText.text = "Select?";
+            }
+        }
+        else
+        {
+            // if the hero is locked
+            selectBtnImage.sprite = buttonBlue;
+            starIcon.SetActive(true);
+            selectedText.text = "1000";
+        }
+    }
+
+    public void SelectHero()
+    {
+        if (!heroes[currentIndex])
+        {
+            if (currentIndex != GameManager.instance.selectedIndex)
+            {
+                if (GameManager.instance.starScore >= 1000)
+                {
+                    GameManager.instance.starScore -= 1000;
+
+                    selectBtnImage.sprite = buttonGreen;
+                    selectedText.text = "Selected";
+                    starIcon.SetActive(false);
+
+                    heroes[currentIndex] = true;
+
+                    starScoreText.text = GameManager.instance.starScore.ToString();
+
+                    GameManager.instance.selectedIndex = currentIndex;
+                    GameManager.instance.heroes = heroes;
+
+                    GameManager.instance.SaveGameData();
+                }
+                else
+                {
+                    print("Not enough star points to unlock the player");
+                }
+            }
+        }
+        else
+        {
+            selectBtnImage.sprite = buttonGreen;
+            selectedText.text = "Selected";
+            GameManager.instance.selectedIndex = currentIndex;
+
+            GameManager.instance.SaveGameData();
+        }
     }
 }

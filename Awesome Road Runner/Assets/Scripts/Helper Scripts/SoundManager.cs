@@ -28,7 +28,14 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (GameManager.instance.playSound)
+        {
+            backgroundAudioSource.Play();
+        }
+        else
+        {
+            backgroundAudioSource.Stop();
+        }
     }
 
     public void PlayMoveLaneSound()

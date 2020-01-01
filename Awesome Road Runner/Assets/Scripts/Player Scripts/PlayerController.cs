@@ -36,7 +36,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+        string path = "Sprites/Player/hero" + GameManager.instance.selectedIndex + "_big";
+        playerSprite = Resources.Load<Sprite>(path);
+        playerRenderer.sprite = playerSprite;
     }
 
     // Update is called once per frame
@@ -83,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
             target.gameObject.SetActive(false);
             SoundManager.instance.PlayCoinSound();
-            // GAMEPLAY CONTROLLER INCREASE STAR SCORE
+            GameplayController.instance.UpdateStarScore();
         }
     }
 

@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
         {
             // we are running our game for the first time
             // setup initial values
-            starScore = 0;
+            //starScore = 0;
+            starScore = 9000;   // FOR TESTING PURPOSES ONLY
             scoreCount = 0;
             selectedIndex = 0;
 
